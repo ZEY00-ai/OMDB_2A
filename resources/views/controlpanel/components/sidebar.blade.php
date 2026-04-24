@@ -11,8 +11,8 @@
             <li class="dropdown active">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-film"></i><span>Movies</span></a>
               <ul class="dropdown-menu">
-                <li  class=active><a class="nav-link" href="{{ url('/dashboard') }}">Search Movies</a></li>
-                <li><a class="nav-link" href="{{ url('/My')}}">My Favorites</a></li>
+                <li  class=active><a class="nav-link" href="{{ url('/controlpanel') }}">Search Movies</a></li>
+                <li><a class="nav-link" href="{{ url('/Favorites') }}">My Favorites</a></li>
               </ul>
             </li>
       </div>
