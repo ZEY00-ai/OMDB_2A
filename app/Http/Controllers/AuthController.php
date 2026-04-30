@@ -6,6 +6,7 @@ use App\Services\AuthService;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
@@ -34,12 +35,12 @@ class AuthController extends Controller
             'email'     => ['required', 'email', 'unique:users'],
             'password'  => ['required',
                             'confirmed',
-                            Password::min(8)
-                                ->letters()
-                                ->mixedCase()
-                                ->numbers()
-                                ->symbols()
-                                ->uncompromised(),
+                            Password::min(8),
+                                // ->letters()
+                                // ->mixedCase()
+                                // ->numbers()
+                                // ->symbols()
+                                // ->uncompromised(),
                             ]
         ]);
 
@@ -79,9 +80,25 @@ class AuthController extends Controller
             if (!$response) {
                 return redirect()->back()->with('error', 'Kredensial tidak valid!');
             }
-            return redirect('/controlpanel')->with('success', 'Login berhasil');
+            return Redirect('controlpanel/dashboard')->with('success', 'Login berhasil');
         } catch (\Throwable $th) {
             Log::error('Error during login: ' . $th->getMessage(), [
+                'line'      => $th->getLine(),
+                'file'      => $th->getFile(),
+                'message'   => $th->getMessage(),
+            ]);
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan');
+        }
+    }
+
+    public function logout()
+    {
+        try {
+           session()->flush();
+            return redirect()->route('login')->with('success', 'Logout berhasil');
+        }catch (\throwable $th){
+            log::error('Error during logout: ' . $th->getMessage(), [
                 'line'      => $th->getLine(),
                 'file'      => $th->getFile(),
                 'message'   => $th->getMessage(),

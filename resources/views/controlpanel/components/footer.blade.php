@@ -3,11 +3,11 @@
           Copyright &copy; <span id="year"></span> <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
         </div>
         <div class="footer-right">
-          
+
         </div>
       </footer>
     </div>
-  </div>  
+  </div>
 
   <!-- General JS Scripts -->
   <script src="{{asset('assets/modules/jquery.min.js')}}"></script>
@@ -17,7 +17,7 @@
   <script src="{{asset('assets/modules/nicescroll/jquery.nicescroll.min.js')}}"></script>
   <script src="{{asset('assets/modules/moment.min.js')}}"></script>
   <script src="{{asset('assets/js/stisla.js')}}"></script>
-  
+
   <!-- JS Libraies -->
   <script src="{{asset('assets/modules/jquery.sparkline.min.js')}}"></script>
   <script src="{{asset('assets/modules/chart.min.js')}}"></script>
@@ -27,7 +27,7 @@
 
   <!-- Page Specific JS File -->
   <script src="{{asset('assets/js/page/index.js')}}"></script>
-  
+
   <!-- Template JS File -->
   <script src="{{asset('assets/js/scripts.js')}}"></script>
   <script src="{{asset('assets/js/custom.js')}}"></script>

@@ -44,6 +44,7 @@
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
                     </div>
+                    @csrf
                     <input type="password" class="form-control" name="password" tabindex="2">
                     @error('password')
                         <span class="text-sm text-danger">{{ $message }}</span>
