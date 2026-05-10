@@ -36,6 +36,24 @@
               <img src="{{ asset('assets/img/stisla-fill.svg')}}" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
+                        <!-- Language Switcher -->
+            <div class="text-center mb-3">
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="fas fa-globe"></i>
+                        {{ app()->getLocale() == 'id' ? 'ID' : 'EN' }}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="{{ url('lang', 'en') }}" class="dropdown-item">
+                            English
+                        </a>
+                        <a href="{{ url('lang', 'id') }}" class="dropdown-item">
+                            Bahasa Indonesia
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="card card-primary">
               <div class="card-header"><h4>{{__('messages.register') }}</h4></div>
               <div class="card-body">
@@ -84,7 +102,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Already have an account? <a href="{{ route('login') }}">Login here</a>
+              {{__('messages.Already have an account?') }} <a href="{{ route('login') }}">{{__('messages.Login here') }}</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; Stisla <span id="year"></span>

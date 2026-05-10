@@ -34,4 +34,6 @@ return [
     "Action" => "Action",
     "enter keywords to search for movies" => "Enter Keywords To Search For Movies",
     "search for movies" => "Search For Movies",
+    "Already have an account?" => "Already have an account?",
+    "Login here" => "Login Here",
 ];

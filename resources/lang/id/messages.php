@@ -34,4 +34,6 @@ return [
     "Action" => "Aksi",
     "enter keywords to search for movies" => "Masukkan kata kunci untuk mencari film",
     "search for movies" => "Cari Film",
+    "Already have an account?" => "Sudah punya akun?",
+    "Login here" => "Login Disini",
 ];
