@@ -1,0 +1,37 @@
+<?php
+
+// lang/id/messages.php
+
+return [
+    "login"   => "Masuk",
+    "register" => "Daftar",
+    "email" => "Email",
+    "password" => "Kata Sandi",
+    "Password Confirmation" => "Konfirmasi Kata Sandi",
+    "create one" => "Buat akun",
+    "Dont have an account?" => "Belum punya akun?",
+    "Full Name" => "Nama Lengkap",
+    "Logged in 5 min ago" => "Masuk 5 menit lalu",
+    "Logout" => "Keluar",
+    "Movies" => "Film",
+    "Search Movies" => "Cari Film",
+    "Poster" => "Poster",
+    "Title" => "Judul",
+    "Year" => "Tahun",
+    "Type" => "Tipe",
+    "Action" => "Aksi",
+    "PAGES" => "HALAMAN",
+    "My Favorites" => "Favorit Saya",
+    "Favorite Movies" => "Film Favorit",
+    "No favorites yet" => "Belum ada favorit",
+    "Start adding movies to your favorites list!" => "Mulai tambahkan film ke daftar favorit Anda",
+    "find your favorite movie" => "Temukan film favorit Anda",
+    "All Movies" => "Semua Film",
+    "Poster" => "Poster",
+    "Title" => 'Judul',
+    "Year" => "Tahun",
+    "Type" => "Jenis",
+    "Action" => "Aksi",
+    "enter keywords to search for movies" => "Masukkan kata kunci untuk mencari film",
+    "search for movies" => "Cari Film",
+];

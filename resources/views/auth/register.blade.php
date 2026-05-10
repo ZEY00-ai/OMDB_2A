@@ -37,12 +37,12 @@
             </div>
 
             <div class="card card-primary">
-              <div class="card-header"><h4>Register</h4></div>
+              <div class="card-header"><h4>{{__('messages.register') }}</h4></div>
               <div class="card-body">
                 <form method="POST" action="{{ route('signup') }}">
                     @csrf
                   <div class="form-group">
-                    <label for="name">Full Name</label>
+                    <label for="name">{{__('messages.Full Name') }}</label>
                     <input id="name" type="text" class="form-control" name="name">
                     @error('name')
                         <span class="text-danger text-sm">{{ $message }}</span>
@@ -50,7 +50,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{__('messages.email') }}</label>
                     <input id="email" type="email" class="form-control" name="email">
                     @error('email')
                         <span class="text-danger text-sm">{{ $message }}</span>
@@ -59,7 +59,7 @@
 
                   <div class="row">
                     <div class="form-group col-6">
-                      <label for="password" class="d-block">Password</label>
+                      <label for="password" class="d-block">{{__('messages.password') }}</label>
                       <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator" name="password">
                       <div id="pwindicator" class="pwindicator">
                         <div class="bar"></div>
@@ -70,14 +70,14 @@
                         @enderror
                     </div>
                     <div class="form-group col-6">
-                      <label for="password2" class="d-block">Password Confirmation</label>
+                      <label for="password2" class="d-block">{{__('messages.Password Confirmation') }}</label>
                       <input id="password2" type="password" class="form-control" name="password_confirmation">
                     </div>
                   </div>
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
-                      Register
+                      {{__('messages.register') }}
                     </button>
                   </div>
                 </form>

@@ -26,14 +26,32 @@
               <img src="{{ asset('assets/img/stisla-fill.svg')}}" alt="logo" width="100" class="shadow-light rounded-circle">
             </div>
 
+                        <!-- Language Switcher -->
+            <div class="text-center mb-3">
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="fas fa-globe"></i>
+                        {{ app()->getLocale() == 'id' ? 'ID' : 'EN' }}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="{{ url('lang', 'en') }}" class="dropdown-item">
+                            English
+                        </a>
+                        <a href="{{ url('lang', 'id') }}" class="dropdown-item">
+                            Bahasa Indonesia
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="card card-primary">
-              <div class="card-header"><h4>Login</h4></div>
+              <div class="card-header"><h4>{{__('messages.login') }}</h4></div>
 
               <div class="card-body">
                 <form method="POST" action="{{ route('signin')}}" class="needs-validation" novalidate="">
                     @csrf
                   <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{__('messages.email') }}</label>
                     <input type="email" class="form-control" name="email" tabindex="1">
                     @error('email')
                         <span class="text-sm text-danger">{{ $message }}</span>
@@ -42,7 +60,7 @@
 
                   <div class="form-group">
                     <div class="d-block">
-                    	<label for="password" class="control-label">Password</label>
+                    	<label for="password" class="control-label">{{__('messages.password') }}</label>
                     </div>
                     @csrf
                     <input type="password" class="form-control" name="password" tabindex="2">
@@ -53,7 +71,7 @@
 
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                      {{__('messages.login') }}
                     </button>
                   </div>
                 </form>
@@ -61,7 +79,7 @@
               </div>
             </div>
             <div class="mt-5 text-muted text-center">
-              Don't have an account? <a href="{{ url('/register') }}">Create One</a>
+              {{__('messages.Dont have an account?') }} <a href="{{ url('/register') }}">{{__('messages.create one') }}</a>
             </div>
             <div class="simple-footer">
               Copyright &copy; Stisla <span id="year"></span>
