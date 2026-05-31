@@ -105,7 +105,15 @@
                                                         </span>
                                                     </td>
                                                     <td class="align-middle">
-                                                        <button class="btn btn-sm btn-outline-danger mr-1">
+                                                        <button
+                                                            class="btn btn-sm btn-outline-danger mr-1 favorite-btn"
+                                                            data-imdb="{{ $movie['imdbID'] ?? '' }}"
+                                                            data-title="{{ $movie['Title'] ?? '' }}"
+                                                            data-year="{{ $movie['Year'] ?? '' }}"
+                                                            data-poster="{{ isset($movie['Poster']) && $movie['Poster'] !== 'N/A' ? $movie['Poster'] : '' }}"
+                                                            data-type="{{ $movie['Type'] ?? '' }}"
+                                                            type="button"
+                                                        >
                                                             <i class="fas fa-heart"></i>
                                                         </button>
                                                         <a href="{{ route('movies.detail', $movie['imdbID']) }}" class="btn btn-sm btn-info">

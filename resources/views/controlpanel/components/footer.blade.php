@@ -80,112 +80,64 @@
 
 {{-- Script Favorite --}}
 <script>
-document.getElementById('favorite-btn').addEventListener('click', function () {
-    const btn    = this;
-    const imdbId = btn.dataset.imdb;
-    const title  = btn.dataset.title;
-    const year   = btn.dataset.year;
-    const poster = btn.dataset.poster;
-    const type   = btn.dataset.type;
+function sendFavoriteRequest(url, method, body = null) {
+    const headers = {
+        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+        'Content-Type': 'application/json',
+    };
 
-    const isFavorite = btn.classList.contains('btn-danger');
+    return fetch(url, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : null,
+    }).then(res => res.json());
+}
 
-    if (isFavorite) {
-        // Hapus dari favorite
-        fetch(`/controlpanel/favorites/${imdbId}`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json',
-            },
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                btn.classList.remove('btn-danger');
-                btn.classList.add('btn-outline-danger');
-                btn.querySelector('i').classList.remove('fas');
-                btn.querySelector('i').classList.add('far');
-                btn.querySelector('span').textContent = 'Add to Favorites';
+document.querySelectorAll('.favorite-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const imdbId = this.dataset.imdb;
+        const title  = this.dataset.title;
+        const year   = this.dataset.year;
+        const poster = this.dataset.poster;
+        const type   = this.dataset.type;
 
-                Swal.fire({
-                    text: data.message,
-                    icon: 'success',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            } else {
-                Swal.fire({
-                    text: data.message,
-                    icon: 'error',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            }
-        })
-        .catch(() => {
-            Swal.fire({
-                text: 'Terjadi kesalahan.',
-                icon: 'error',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
+        const isFavorite = this.classList.contains('btn-danger');
+
+        if (isFavorite) {
+            sendFavoriteRequest(`/controlpanel/favorites/${imdbId}`, 'DELETE')
+            .then(data => {
+                if (data.success) {
+                    this.classList.remove('btn-danger');
+                    this.classList.add('btn-outline-danger');
+                    const icon = this.querySelector('i');
+                    if (icon) { icon.classList.remove('fas'); icon.classList.add('far'); }
+
+                    Swal.fire({ text: data.message, icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+                } else {
+                    Swal.fire({ text: data.message, icon: 'error', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+                }
+            })
+            .catch(() => {
+                Swal.fire({ text: 'Terjadi kesalahan.', icon: 'error', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
             });
-        });
+        } else {
+            sendFavoriteRequest('/controlpanel/favorites', 'POST', { imdb_id: imdbId, title, year, poster, type })
+            .then(data => {
+                if (data.success) {
+                    this.classList.remove('btn-outline-danger');
+                    this.classList.add('btn-danger');
+                    const icon = this.querySelector('i');
+                    if (icon) { icon.classList.remove('far'); icon.classList.add('fas'); }
 
-    } else {
-        // Tambah ke favorite
-        fetch('/controlpanel/favorites', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ imdb_id: imdbId, title, year, poster, type }),
-        })
-        .then(res => res.json())
-        .then(data => {
-            if (data.success) {
-                btn.classList.remove('btn-outline-danger');
-                btn.classList.add('btn-danger');
-                btn.querySelector('i').classList.remove('far');
-                btn.querySelector('i').classList.add('fas');
-                btn.querySelector('span').textContent = 'Remove from Favorites';
-
-                Swal.fire({
-                    text: data.message,
-                    icon: 'success',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            } else {
-                Swal.fire({
-                    text: data.message,
-                    icon: 'warning',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-            }
-        })
-        .catch(() => {
-            Swal.fire({
-                text: 'Terjadi kesalahan.',
-                icon: 'error',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000
+                    Swal.fire({ text: data.message, icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+                } else {
+                    Swal.fire({ text: data.message, icon: 'warning', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+                }
+            })
+            .catch(() => {
+                Swal.fire({ text: 'Terjadi kesalahan.', icon: 'error', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
             });
-        });
-    }
+        }
+    });
 });
 </script>
