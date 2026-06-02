@@ -110,7 +110,9 @@ document.querySelectorAll('.favorite-btn').forEach(btn => {
                     this.classList.remove('btn-danger');
                     this.classList.add('btn-outline-danger');
                     const icon = this.querySelector('i');
+                    const label = this.querySelector('span');
                     if (icon) { icon.classList.remove('fas'); icon.classList.add('far'); }
+                    if (label) { label.textContent = 'Add to Favorites'; }
 
                     Swal.fire({ text: data.message, icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
                 } else {
@@ -127,7 +129,9 @@ document.querySelectorAll('.favorite-btn').forEach(btn => {
                     this.classList.remove('btn-outline-danger');
                     this.classList.add('btn-danger');
                     const icon = this.querySelector('i');
+                    const label = this.querySelector('span');
                     if (icon) { icon.classList.remove('far'); icon.classList.add('fas'); }
+                    if (label) { label.textContent = 'Remove from Favorites'; }
 
                     Swal.fire({ text: data.message, icon: 'success', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
                 } else {
